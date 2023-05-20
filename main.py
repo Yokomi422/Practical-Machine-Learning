@@ -22,14 +22,14 @@ data_Y = f(data_X[:, 0])  # Xのサンプル数に合わせてdata_Yを生成す
 
 model.fit(data_X, data_Y)
 
-# plt.plot(X, Y)
+plt.plot(X, Y)
 
 plt.scatter(np.random.uniform(-10, 11, 25), np.random.uniform(-500, 800, 25), color="red")
 plt.scatter(x, f(x), color="red")
 
 # 回帰直線を描画
-# regression_line = model.intercept_ + model.coef_[0] * X
-# plt.plot(X, regression_line)
+regression_line = model.intercept_ + model.coef_[0] * X
+plt.plot(X, regression_line)
 
 # 調整
 #　追加

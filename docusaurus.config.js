@@ -9,8 +9,8 @@ const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Machine Learning Tutorial',
+  tagline: 'This educational material is standing on the shoulders of giants.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
