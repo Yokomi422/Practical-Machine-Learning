@@ -1,6 +1,7 @@
 import MyChart from '../../../src/components/Graphs/scatter';
 import LinearRegression from "../../../src/components/Graphs/linear"
 import Answer from "../../../src/components/Answer/Answer"
+import Equ from "../../../src/components/Equations/index"
 
 # 線形回帰(Liner Regression)
 
@@ -8,6 +9,14 @@ import Answer from "../../../src/components/Answer/Answer"
 ## 線形回帰とは
 
 線形回帰とは、データの傾向を直線(三次元では平面、それの次元では超平面)で表現する手法です。
+つまり、目的変数と説明変数の関係は以下のように表せると仮定して、
+
+$$
+\hat{y} = θ_0 + θ_1 x_1 + θ_2 x_2 + ... + θ_n x_n
+$$
+
+といったように、目的変数が説明変数の線形結合で表現できると仮定しています。
+
 例えば、身長と体重を測定したデータがあったとします。
 このデータを直線で表現すると、以下のようになります
 
@@ -23,10 +32,10 @@ import Answer from "../../../src/components/Answer/Answer"
 上のグラフの傾きと切片は、それぞれどのような値になるでしょうか？実は、それらは以下の式(正規方程式)で求めることができます。
 正規方程式は、以下のようになります。これをa,bについて解くことで、直線の傾きが求められます。
 
-- $$ 
+$$ 
 n a + b \sum_{i=1}^{n-1} X_i = \sum_{i=0}^{n-1} y_i
 $$
-- $$ 
+$$ 
 a \sum_{i=0}^{n-1} X_i + b \sum_{i=0}^{n-1} X_i^2 = \sum_{i=0}^{n-1} X_i y_i
 $$
 
@@ -50,7 +59,7 @@ $$
 
 <Answer/>
 
-## 線形回帰の実装
+## 線形回帰分析の実装
 上では線形回帰をスクラッチで実装しましたが、実際にはscikit-learnというライブラリを使うことで簡単に実装することができます。
 :::tip tips
 scikit-learnは機械学習のライブラリです。機械学習アルゴリズムが実装されていて、簡単にそれらを使うことができます。
@@ -69,6 +78,7 @@ lin_reg.fit(X, y)
 - `lin_reg.coef_`で傾きを、`lin_reg.intercept_`で切片を取得することができます。
 
 
+
 ## 重回帰分析
 上で扱ったの例で扱った回帰は、身長から体重を予測するという単回帰分析でした。
 身長だけでは、体重を予測するのは難しいと思います。そこで、さらに多くの特徴を考慮した上で、体重の予測を行うことを考えます。
@@ -77,7 +87,62 @@ lin_reg.fit(X, y)
 
 :::tip 単回帰分析と重回帰分析
 単回帰分析は、身長から体重を予測するなど、一つの目的変数に対して、一つの説明変数を用いる分析です。
-一方で、重回帰分析は、説明変数として身長の他に、年齢や性別など二つ以上の説明変数を用いる分析です。
+一方で、重回帰分析は、説明変数として身長の他に、年齢や年齢など二つ以上の説明変数を用いる分析です。
 :::
 
-では早速、重回帰分析を実装してみましょう。まずは
+では早速、重回帰分析を実装してみましょう。まずは、簡単な例から見てみましょう。
+単回帰では、$y$が体重で$x$が身長となっており、
+$$
+\hat{y} = a + b x
+$$
+
+という関係式になっていましたが、例えば$x$を身長、$z$を年齢として
+$$
+\hat{y} = a + b x + c z　①
+$$
+
+という関係式になります。
+
+:::tip tips
+説明変数が2個以上になる場合は、$x$をベクトルとして、表します。
+
+$$
+\hat{y} = \boldsymbol{θ}^\mathsf{T} \boldsymbol{x}
+$$
+$\boldsymbol{θ}^\mathsf{T}$と$\boldsymbol{x}$はそれぞれ
+$$
+\boldsymbol{θ} = (θ_1,θ_2,θ_3,...,θ_n)^\mathsf{T}
+$$
+$$
+\boldsymbol{x} = (x_1,x_2,x_3,...,x_n)
+$$
+を表します。
+:::
+
+最小二乗法から、
+$$
+S(a,b,c) =  \sum_{i=0}^{n-1} (y_i - (a + b x_i + c z_i))^2
+$$
+となります。これを最小にする$a,b,c$を求めることで、①を満たす$a,b,c$を求めることができます。
+:::tip tips
+正規方程式をベクトル表記で表すと、以下のようになります。
+$$
+\boldsymbol{θ} = (\boldsymbol{X}^\mathsf{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathsf{T} \boldsymbol{y}
+$$
+:::
+
+## 重回帰分析の実装
+これをPythonで実装してみましょう。実は、上で単回帰を実装した時と全く同じコードで実装することができます。
+
+````python
+from sklearn.linear_model import LinearRegression
+lin_reg = LinearRegression()
+lin_reg.fit(X, y)
+````
+```python
+print(lin_reg.coef_)
+print(lin_reg.intercept_)
+```
+これで、$\hat{y} = a + b x + c z$の$a,b,c$を求めることができました。
+これは、与えられたデータに対して、最も当てはまりの良い平面を求めたことを意味します。
+説明変数が３個以上の場合は、平面ではなく、超平面になりますが、考え方は同じです。
