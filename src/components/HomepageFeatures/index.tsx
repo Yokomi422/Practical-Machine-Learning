@@ -10,12 +10,11 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Learning ML algorithms from scratch.',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        This material allows you to learn machine learning algorithms mathematically and theoretically.
       </>
     ),
   },
@@ -30,7 +29,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Practical examples of ML applications',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
@@ -68,3 +67,4 @@ export default function HomepageFeatures(): JSX.Element {
     </section>
   );
 }
+
