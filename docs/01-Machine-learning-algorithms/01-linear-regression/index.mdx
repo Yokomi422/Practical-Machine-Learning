@@ -2,6 +2,7 @@ import MyChart from '../../../src/components/Graphs/scatter';
 import LinearRegression from "../../../src/components/Graphs/linear"
 import Answer from "../../../src/components/Answer/Answer"
 import Equ from "../../../src/components/Equations/index"
+import Supple from "./supple"
 
 # 線形回帰(Liner Regression)
 
@@ -39,22 +40,8 @@ $$
 a \sum_{i=0}^{n-1} X_i + b \sum_{i=0}^{n-1} X_i^2 = \sum_{i=0}^{n-1} X_i y_i
 $$
 
-:::tip tips
-上の二つの方程式は以下の最適化問題を解くことから導出されます。
-$$
-S = S(a,b) = \min_{a, b} \sum_{i=0}^{n-1} (y_i - (aX_i + b))^2
-$$
-とすると、S を最初にするa,bを求めればいいことになります。偏微分をして、
-$$
-\frac{{\partial}}{{\partial a}} S(a,b) = 0
-\iff \sum_{i=0}^{n-1} (y_i - (aX_i + b))X_i = 0
-$$
-$$
-\frac{{\partial}}{{\partial b}} S(a,b) = 0
-\iff \sum_{i=0}^{n-1} (y_i - (aX_i + b)) = 0
-$$
-これらを整理することで、上の二つの式が導出されます。
-:::
+<Supple props="上の二式の導出"/>
+
 これはPythonで実装してみましょう。
 
 <Answer/>
