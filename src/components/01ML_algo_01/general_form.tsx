@@ -17,8 +17,8 @@ export default function Supple({ children, props }: { children: ReactNode, props
         <BlockMath math={`\\left( \\begin{array}{c} θ_0 \\\\ θ_1 \\\\ ・\\\\ ・\\\\ ・ \\\\ θ_n \\end{array} \\right)`} />
         <InlineMath math="\boldsymbol{X}"/>は、
         <BlockMath math={`\\begin{pmatrix} 1 & 1 & 1 & ・ ・ & 1 \\\\ x_{2 1} & x_{2 2} & x_{2 3} & ・ ・ & x_{2 n} \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ x_{m 1} & x_{m 2} & x_{m 3} & ・ ・ & x_{m n}\\end{pmatrix}`} />
-        とする。目的変数のベクトル<InlineMath math="y"/>は
-        <BlockMath math="\boldsymbol{y} = \boldsymbol{θ} \boldsymbol{X}^\mathsf{T}"/>
+        とする。一つのデータの特徴量は一列に並んでいるとします。目的変数のベクトル<InlineMath math="y"/>は
+        <BlockMath math="\boldsymbol{y} = \boldsymbol{θ}^\mathsf{T} \boldsymbol{X}"/>
         となります。
         正規方程式を一般形で表すと、以下のようになります。
         <BlockMath math="\boldsymbol{θ} = (\boldsymbol{X}^\mathsf{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathsf{T} \boldsymbol{y}"/>
@@ -30,7 +30,7 @@ export default function Supple({ children, props }: { children: ReactNode, props
         <BlockMath math={`\\left( \\begin{array}{c} y_1 \\\\ y_2 \\\\ ・\\\\ ・\\\\ ・ \\\\ y_m \\end{array} \\right)`} />
         です。
         MSEは以下の式で計算されます。
-        ここで、<InlineMath math="x_i"/>は<InlineMath math="\boldsymbol{X}"/>のi列目です。
+        ここで、<InlineMath math="x_i"/>は<InlineMath math="\boldsymbol{X}"/>のi目です。
         <BlockMath math="MSE = \frac{1}{2 m} \sum_{i=1}^{m} (y_i - \boldsymbol{θ}^\mathsf{T} \boldsymbol{x_i})^2" />
         θそれぞれについて偏微分をしましょう。
         <BlockMath math="\frac{\partial}{\partial \theta} \text{MSE}(\theta) = \frac{\partial}{\partial \theta} \left( \frac{1}{2m} \sum_{i=1}^{m} (y_i - \theta^T x_i)^2 \right)" />
