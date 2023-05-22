@@ -3,6 +3,7 @@ import LinearRegression from "../../../src/components/Graphs/linear"
 import Answer from "../../../src/components/Answer/Answer"
 import Equ from "../../../src/components/Equations/index"
 import Supple from "./supple"
+import GeneralForm from "../../../src/components/01ML_algo_01/general_form"
 
 # 線形回帰(Liner Regression)
 
@@ -34,12 +35,13 @@ $$
 正規方程式は、以下のようになります。これをa,bについて解くことで、直線の傾きが求められます。
 
 $$ 
-n a + b \sum_{i=1}^{n-1} X_i = \sum_{i=0}^{n-1} y_i
+n a + b \sum_{i=1}^{n-1} x_i = \sum_{i=0}^{n-1} y_i
 $$
 $$ 
-a \sum_{i=0}^{n-1} X_i + b \sum_{i=0}^{n-1} X_i^2 = \sum_{i=0}^{n-1} X_i y_i
+a \sum_{i=0}^{n-1} x_i + b \sum_{i=0}^{n-1} x_i^2 = \sum_{i=0}^{n-1} x_i y_i
 $$
 
+aとb以外は定数なので、連立方程式を解くことで、aとbを求めることができます。
 <Supple props="上の二式の導出"/>
 
 これはPythonで実装してみましょう。
@@ -90,33 +92,13 @@ $$
 
 という関係式になります。
 
-:::tip tips
-説明変数が2個以上になる場合は、$x$をベクトルとして、表します。
-
-$$
-\hat{y} = \boldsymbol{θ}^\mathsf{T} \boldsymbol{x}
-$$
-$\boldsymbol{θ}^\mathsf{T}$と$\boldsymbol{x}$はそれぞれ
-$$
-\boldsymbol{θ} = (θ_1,θ_2,θ_3,...,θ_n)^\mathsf{T}
-$$
-$$
-\boldsymbol{x} = (x_1,x_2,x_3,...,x_n)
-$$
-を表します。
-:::
-
 最小二乗法から、
 $$
 S(a,b,c) =  \sum_{i=0}^{n-1} (y_i - (a + b x_i + c z_i))^2
 $$
 となります。これを最小にする$a,b,c$を求めることで、①を満たす$a,b,c$を求めることができます。
-:::tip tips
-正規方程式をベクトル表記で表すと、以下のようになります。
-$$
-\boldsymbol{θ} = (\boldsymbol{X}^\mathsf{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathsf{T} \boldsymbol{y}
-$$
-:::
+
+<GeneralForm props="正規方程式の一般形"/>
 
 ## 重回帰分析の実装
 これをPythonで実装してみましょう。実は、上で単回帰を実装した時と全く同じコードで実装することができます。
