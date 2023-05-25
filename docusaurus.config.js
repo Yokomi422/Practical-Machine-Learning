@@ -82,7 +82,7 @@ const config = {
             label: 'Tutorial',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/Yokomi422/Practical-Machine-Learning',
             label: 'GitHub',
             position: 'right',
           },
@@ -99,13 +99,10 @@ const config = {
                 href: 'https://stackoverflow.com/questions/tagged/docusaurus',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/utokyo_code',
               },
+              
             ],
           },
           {
@@ -113,7 +110,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/Yokomi422/Practical-Machine-Learning',
               },
             ],
           },
