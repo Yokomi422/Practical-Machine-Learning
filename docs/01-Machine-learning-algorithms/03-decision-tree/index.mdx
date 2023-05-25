@@ -1,6 +1,7 @@
 import Tree01 from "../../../src/components/01ML_algo/algo03/Tree01/Tree01"
 import Tree02 from "../../../src/components/01ML_algo/algo03/Tree02/Tree02"
 import Graph01 from "../../../src/components/01ML_algo/algo03/Graph01/Graph01"
+import Supplement from "../../../src/components/Supplement/Supplement"
 
 # 決定木(Decision Tree)
 
@@ -132,3 +133,41 @@ $$$
 しかし、これは過学習を引き起こしています。
 決定木の深さを調整するには、今までのように数式を用いた方法ではなく、
 交差検証(のちに扱います)や、木の深さを調整するパラメータを用いる方法があります。早期停止や正則化もある。
+
+
+## 決定木の実装
+
+scikit-learnを用いて、決定木を実装してみましょう。
+実際にirisデータセットを用いて、決定木を実装してみます。
+以下のコードは理解する必要はありません。後ほど説明します。
+```python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create a decision tree classifier and fit it to the training data
+clf = DecisionTreeClassifier(max_depth=3, random_state=42)
+clf.fit(X_train, y_train)
+
+# Print the accuracy of the classifier on the test data
+print('Accuracy:', clf.score(X_test, y_test))
+```
+
+
+決定木のパラメータについて説明します。詳細は[公式サイト](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn-tree-decisiontreeclassifier)で確認してください。
+- criterion: 分割の品質を測定する関数を指定します。デフォルトはジニ不純物です。
+- max_depth: 決定木の深さを指定します。デフォルトはNoneです。
+- min_samples_split: ノードを分割するために必要な最小サンプル数を指定します。デフォルトは2です。
+- min_samples_leaf: 葉ノードに必要な最小サンプル数を指定します。デフォルトは1です。
+- max_features: 分割する特徴量の最大数を指定します。デフォルトはNoneです。
+- random_state: 乱数のシードを指定します。デフォルトはNoneです。
+
+これらは一切覚える必要はなく、適宜調べて使ってください。
