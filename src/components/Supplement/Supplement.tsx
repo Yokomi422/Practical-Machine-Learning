@@ -1,5 +1,7 @@
 import React, { type ReactNode } from "react";
 import Details from "@theme/Details";
+import "katex/dist/katex.min.css";
+import { BlockMath } from "react-katex";
 
 export default function Answer({
   children,
