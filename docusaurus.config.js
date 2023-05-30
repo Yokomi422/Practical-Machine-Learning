@@ -7,6 +7,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const math = require('remark-math');
 const katex = require('rehype-katex');
 
+const path = require('path');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Machine Learning Tutorial',
@@ -131,6 +133,16 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+    plugins: [
+      [
+          'docusaurus-plugin-module-alias',
+          {
+              alias: {
+                  '@/components': path.resolve(__dirname, './src/components'),
+              },
+          },
+      ],
+  ],
 };
 
 module.exports = config;
