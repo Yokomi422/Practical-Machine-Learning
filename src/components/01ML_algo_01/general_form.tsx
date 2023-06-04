@@ -12,9 +12,9 @@ export default function Supple({
   return (
     <Details summary={<summary>{props}</summary>}>
       {children}
-      説明変数が一つと二つの場合については、上で見てきました。yx
+      説明変数が一つと二つの場合については、上で見てきました。
       では、説明変数が三つ以上の場合はどうなるでしょうか。
-      確かに、上と同様に具体的に条件式を列強することも可能ですが、説明変数が増加すると、その分式が増えていきます。
+      確かに、上と同様に具体的に条件式を列挙することも可能ですが、説明変数が増加すると、その分式が増えていきます。
       そこで、行列を用いて一般化してみましょう。 説明変数が2個以上になる場合は、
       <InlineMath math="x" />
       をベクトルとして
@@ -27,11 +27,11 @@ export default function Supple({
       <InlineMath math="\boldsymbol{X}" />
       は、
       <BlockMath
-        math={`\\begin{pmatrix} 1 & 1 & 1 & ・ ・ & 1 \\\\ x_{2 1} & x_{2 2} & x_{2 3} & ・ ・ & x_{2 n} \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ x_{m 1} & x_{m 2} & x_{m 3} & ・ ・ & x_{m n}\\end{pmatrix}`}
+        math={`\\begin{pmatrix} 1 & x_{1 1} & x_{1 2} & ・ ・ & x_{1 n} \\\\ 1 & x_{2 1} & x_{2 2} & ・ ・ & x_{2 n} \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ 1 & x_{m 1} & x_{m 2} & ・ ・ & x_{m n}\\end{pmatrix}`}
       />
-      とする。一つのデータの特徴量は一列に並んでいるとします。目的変数のベクトル
+      とする。一つのデータの特徴量は一行に並んでいるとします。目的変数のベクトル
       <InlineMath math="y" />は
-      <BlockMath math="\boldsymbol{y} = \boldsymbol{θ}^\mathsf{T} \boldsymbol{X}" />
+      <BlockMath math="\boldsymbol{y} = \boldsymbol{X} \boldsymbol{\theta}" />
       となります。 正規方程式を一般形で表すと、以下のようになります。
       <BlockMath math="\boldsymbol{θ} = (\boldsymbol{X}^\mathsf{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathsf{T} \boldsymbol{y}" />
       では、これを丁寧に導出していきましょう。
@@ -59,7 +59,10 @@ export default function Supple({
       <BlockMath math="X^T(X\theta - y) = 0" />
       これを直感的には分かりずらいかもしれませんが、
       <InlineMath math="\sum" />
-      を分解して、分解した式を行列で表現すると、上の式になります。 これを
+      を分解して、分解した式を行列で表現すると、上の式になります。 
+      <InlineMath math="y_i - \theta^T x_i" />
+      がスカラー値であることもポイントです。
+      これを
       <InlineMath math="\boldsymbol{θ}" />
       について解くと、
       <BlockMath math="\boldsymbol{θ} = (\boldsymbol{X}^\mathsf{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathsf{T} \boldsymbol{y}" />
