@@ -13,7 +13,7 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "format": "prettier --write 'src/**/*.tsx' 'src/**/*.ts' 'src/**/*.mdx' 'src/**/*.md' 'src/**/*.css' 'src/**/*.html' 'src/**/*.json'"
+    "format": "prettier --write 'src/**/*.{tsx,ts,mdx,md,css,html,json}'"
   },
   "dependencies": {
     "@docusaurus/core": "^2.4.1",
