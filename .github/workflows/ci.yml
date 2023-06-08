@@ -2,12 +2,25 @@ name: ci
 
 on:
   push:
-    branches:
-      - main
-      - tree
+    branches:  [main, master]
+  pull_request:
     
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - run: echo hello world
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+          cache: npm
+      - name: Install node packages
+        run: npm ci
+        shell: bash
+      - name: Build
+        run: npm run build
+        shell: bash
