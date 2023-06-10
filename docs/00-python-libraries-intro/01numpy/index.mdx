@@ -1,1 +1,147 @@
+import Supplement from "../../../src/components/Supplement/Supplement";
+import Colab from "../../../src/components/Colab/Colab"
+
 # Numpy
+
+最初に学ぶライブラリーはNumpyです。Numpyは数値計算を効率的に行うためのライブラリーです。Numpyを使うことで、Pythonのリストよりも高速に数値計算を行うことができます。
+
+以下に扱う内容は、[Numpy公式チュートリアル](https://docs.scipy.org/doc/numpy/user/quickstart.html)を参考にしています。適宜参照してください。
+
+
+これから実装するコードは、以下のGoogle Colaboratoryで確認出来ます。このページに記載紹介されているが、コードの例がないものは、Colaboratoryのリンクを参照してください。
+
+<Colab url="https://colab.research.google.com/github/Yokomi422/Practical-Machine-Learning/blob/main/docs/00-python-libraries-intro/01numpy/01colab.ipynb" />
+
+## 0.Numpyのインポート
+Numpyは外部ライブラリで、Pythonに標準でインストールされていません。そのため、Numpyを使うためには、インポートする必要があります。インポートするには、以下のようにします。
+
+```python
+import numpy as np
+```
+
+## 1.ndarray
+
+ndarrayは、Numpyの基本的なデータ構造です。ndarrayは、Numpyの配列を表します。Numpyの配列は、Pythonのリストと似ていますが、以下のような違いがあります。
+
+- Numpyの配列は、同じ型の要素しか持つことができない。
+
+- 多次元にすることができる。
+
+- よりも高速に計算を行うことができる。
+
+では、実際にNumpyの配列を作成してみましょう。
+
+```python
+np_array = np.array([1, 2, 3])
+```
+
+上記のように、`np.array`関数にPythonのリストを渡すことで、Numpyの配列を作成することができます。
+
+Pythonのlistとの違いは、以下のように確認することができます。
+
+```python
+print(type([1, 2, 3])) #<class 'list'>
+print(type(np_array))  #<class 'numpy.ndarray'>
+```
+
+`type`関数を使うことで、オブジェクトの型を確認することができます。上記の結果から、`np.array`関数によって作成されたオブジェクトは、`numpy.ndarray`型であることがわかります。
+
+以下では、ndarrayのメソッドをいくつか紹介します。
+
+| メソッド | 説明 | メソッド | 説明 |
+|:-----------|:------------|:-----------|:------------|
+| `ndarray.shape` | 配列の形状を返す。 | `ndarray.max()` | 配列の最大値を返す。 |
+| `ndarray.ndim` | 配列の次元数を返す。 | `ndarray.min()` | 配列の最小値を返す。 |
+| `ndarray.size` | 配列の要素数を返す。 | `ndarray.mean()` | 配列の平均値を返す。 |
+| `ndarray.dtype` | 配列の要素の型を返す。 | `ndarray.sum()` | 配列の合計値を返す。 |
+| `ndarray.astype` | 配列の要素の型を変換する。 | `ndarray.argmax()` | 配列の最大値のインデックスを返す。 |
+| | | `ndarray.argmin()` | 配列の最小値のインデックスを返す。 |
+| | | `ndarray.std()` | 配列の標準偏差を返す。 |
+
+## 2.インデックス参照とスライス
+
+Numpyの配列は、Pythonのリストと同様にインデックス参照とスライスができます。まずは一次元配列の場合を見てみましょう。
+
+```python
+np_array = np.array([1, 2, 3,4]) 
+print(np_array[0])               # 1
+print(np_array[1:3])             # [2,3]    
+```
+- インデックスは、0から始まります。
+- スライスにおいて、最後のインデックスは含まれないことに注意してください。
+```
+二次元配列の場合は、以下のようになります。
+
+```python
+np_array = np.array([[1, 2, 3], [4, 5, 6]])
+print(np_array[0, 0])        # 1
+print(np_array[0, 1:3])      # [2, 3]
+print(np_array[0:2, 0:2])    # [[1, 2], [4, 5]]
+print(np_array[:, 0])        # [1, 4]
+```
+- 二次元配列の場合、[n,m]のnは行を、mは列を表します。
+
+- `np_array[0, 0]`は、ファンシーインデックスといい、`np_array[0][0]`と同じです。
+
+- [:, 0]など:は、スライスの省略形で、全ての要素を表します。
+
+
+## 3.計算例
+
+numpy.ndarrayの計算の例を以下に示します。
+
+## 4. Numpyの組み込み関数
+
+よく用いるNumpyの組み込み関数を以下に示します。
+
+### 4.1. `np.arange`
+`np.arange`関数は、`range`関数と同様に、等差数列を作成する関数です。
+
+np.arange(start, end, step)
+- startは、等差数列の開始値(初期値は0)
+- endは、等差数列の終了値(ただし、この値は含まれない)
+- stepは、等差数列の間隔(初期値は1)
+
+```python
+np_array = np.arange(0, 10, 2)
+print(np_array)                  # [0 2 4 6 8]
+```
+
+### 4.2. `np.linspace`
+
+`np.linspace`関数は、等間隔で数列を作成する関数です。
+
+np.linspace(start, end, num)
+
+- numは、数列の要素数(初期値は50)
+- `np.arange`関数と異なり、endを含む
+
+```python
+np_array = np.linspace(0, 10, 5)
+print(np_array)                   # [ 0.   2.5  5.   7.5 10. ]
+```
+
+どちらも数列を作る関数ですが、`np.arange`は差分を意識して数列を作りたい時、`np.linspace`は要素数を意識して数列を作りたい時に使います。
+
+### 4.3. `np.random`
+
+`np.random`モジュールは、乱数を生成するためのモジュールです。以下では、`np.random`モジュールの主な関数を紹介します。
+
+| 関数 | 説明 |
+|:-----------|:------------|
+| `np.random.rand()` | 0から1までの一様乱数を返す。 |
+| `np.random.randn()` | 標準正規分布に従う乱数を返す。 |
+| `np.random.randint()` | 一様乱数を返す。 |
+| `np.random.choice()` | 配列からランダムに抽出する。 |
+| `np.random.shuffle()` | 配列をランダムに並び替える。 |
+
+次に、乱数シードについて紹介します。
+設定することで、乱数の出力を固定することができます。
+
+```python
+np.random.seed(0)
+```
+- 引数は任意の整数を指定できます。
+- random.seedを設定したセル内では、同じ乱数が出力されます。
+
+## 練習問題
