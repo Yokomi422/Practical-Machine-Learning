@@ -1,1 +1,156 @@
+import Colab from "../../../src/components/Colab/Colab"
+
 # Pandas
+
+今回学ぶライブラリーは、Pandasです。
+Numpyは数値計算を高速に行うライブラリでしたが、Pandasは、Numpyを元に構築された、よりデータ分析に特化したライブラリです。
+一次元配列のデータを扱うSeriesと、二次元配列のデータを扱うDataFrameがあります。
+
+今回も、実行するためのコードは、Google Colablatoryにまとめてありますので、そちらを参照してください。
+
+<Colab url="https://colab.research.google.com/github/Yokomi422/Practical-Machine-Learning/blob/main/docs/00-python-libraries-intro/02pandas/01colab.ipynb" />
+
+
+まず初めは、重要なデータ構造であるSeriesとDataFrameを、Pythonの辞書やndarrayとの関係から学びます。
+
+```python
+import pandas as pd
+import numpy as np
+```
+
+
+## 1. Series
+
+
+### 1.1 明示的なindex
+
+Seriesは、一次元配列のデータを扱うオブジェクトです。
+ndarrayも一次元の配列を扱うことができ、np_array[0]などindexを持っていました。しかし、Seriesは、明示的にindexを持つことができます。具体的には、
+
+```python
+data = np.arange(10)
+sr = pd.Series(data)
+sr
+```
+
+とすると、
+
+```python
+0    0
+1    1
+2    2
+3    3
+4    4
+5    5
+6    6
+7    7
+8    8
+9    9
+dtype: int64
+```
+というように、indexが左に表示されます。
+- `pd.Series`は、Pythonの配列やList、ndarrayなどを引数に取り、Seriesを作成します。
+このindexは、明示的に指定することもできます。
+
+```python
+sr = pd.Series(data, index=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'])
+sr
+```
+- indexを指定することで、文字列をindexとして持つこともできます。
+- numpyはint型のindexが暗黙的に与えられていました。
+
+### 1.2 特殊辞書としてのSeries
+
+Seriesは、Pythonの辞書と似たような構造を持っています。
+
+```python
+dist_population = {
+    "東京都": 13515271,
+    "神奈川県": 9132508,
+    "大阪府": 8839102,
+    "愛知県": 7552873,
+    "埼玉県": 7339768,
+}
+sr_population = pd.Series(dist_population)
+sr_population
+```
+
+辞書は任意のkeyを任意のvalueにマップする構造体ですが、Seriesも同様に、任意のindexを任意のvalueにマップする構造体です。Pandas
+今回学ぶライブラリーは、Pandasです。 Numpyは数値計算を高速に行うライブラリでしたが、Pandasは、Numpyを元に構築された、よりデータ分析に特化したライブラリです。 一次元配列のデータを扱うSeriesと、二次元配列のデータを扱うDataFrameがあります。
+
+今回も、実行するためのコードは、Google Colablatoryにまとめてありますので、そちらを参照してください。
+
+Open In Colab
+まず初めは、重要なデータ構造であるSeriesとDataFrameを、Pythonの辞書やndarrayとの関係から学びます。
+
+
+Seriesは型を定めているので、辞書よりも高速に処理することができます。
+
+## 2. DataFrame
+
+DataFrameは、二次元配列のデータを扱うオブジェクトです。
+
+### 2.1 明示的なindexとcolumn
+
+DataFrameは、Pandasと同様に明示的にindexを指定することができます。さらに、DataFrameは明示的にcolumnを指定することもできます。
+
+```python
+data = np.arange(12).reshape(3, 4)
+df = pd.DataFrame(data, index=['a', 'b', 'c'], columns=['A', 'B', 'C', 'D'])
+df
+```
+
+|   | A | B | C | D |
+|---|---|---|---|---|
+| a | 0 | 1 | 2 | 3 |
+| b | 4 | 5 | 6 | 7 |
+| c | 8 | 9 | 10| 11|
+
+このように、indexとcolumnを指定することで、より直感的にデータを扱うことができます。
+
+
+### 2.2 特殊辞書としてのDataFrame
+
+DataFrameも、Seriesと同様に、Pythonの辞書と似たような構造を持っています。
+
+```python
+dist_area = {
+    "東京都": 12194.05,
+    "神奈川県": 2416.32,
+    "大阪府": 1905.34,
+    "愛知県": 5173.23,
+    "埼玉県": 3797.75,
+}
+sr_area = pd.Series(dist_area)
+sr_area
+```
+
+という面積のデータを追加し、面積と人口からDataFrameを作成します。
+
+```python
+df = pd.DataFrame({
+    "人口": sr_population,
+    "面積": sr_area
+})
+df
+```
+
+- pd.DataFrame()は、keyにcolumn名、valueにSeriesを持つ辞書を引数に取り、DataFrameを作成します。
+- valueは、Seriesだけでなく、ndarrayやListなども指定することができます。
+- Series以外の場合は、Google Colaboratoryで参照できます。
+
+
+|      | 人口     | 面積     |
+|------|----------|----------|
+| 東京都  | 13515271 | 12194.05 |
+| 神奈川県 | 9132508  | 2416.32  |
+| 大阪府  | 8839102  | 1905.34  |
+| 愛知県  | 7552873  | 5173.23  |
+| 埼玉県  | 7339768  | 3797.75  |
+
+このように、DataFrameはSeriesを組み合わせて作成することができ、データを表形式で
+扱うことができます。DataFrameがデータ分析をする上での基本的なデータ構造です。
+次は、DataFrameの基本的な操作を学びます。
+
+## 3. DataFrameの基本的な操作
+
