@@ -22,12 +22,16 @@ export default function Supple({
       を表現します。 ここで、
             <InlineMath math="\boldsymbol{θ}" />は
             <BlockMath
-                math={"\\left( \\begin{array}{c} θ_0 \\\\ θ_1 \\\\ ・\\\\ ・\\\\ ・ \\\\ θ_n \\end{array} \\right)"}
+                math={
+                    "\\left( \\begin{array}{c} θ_0 \\\\ θ_1 \\\\ ・\\\\ ・\\\\ ・ \\\\ θ_n \\end{array} \\right)"
+                }
             />
             <InlineMath math="\boldsymbol{X}" />
       は、
             <BlockMath
-                math={"\\begin{pmatrix} 1 & x_{1 1} & x_{1 2} & ・ ・ & x_{1 n} \\\\ 1 & x_{2 1} & x_{2 2} & ・ ・ & x_{2 n} \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ 1 & x_{m 1} & x_{m 2} & ・ ・ & x_{m n}\\end{pmatrix}"}
+                math={
+                    "\\begin{pmatrix} 1 & x_{1 1} & x_{1 2} & ・ ・ & x_{1 n} \\\\ 1 & x_{2 1} & x_{2 2} & ・ ・ & x_{2 n} \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ ・ & ・ & ・ & ・ ・ & ・ \\\\ 1 & x_{m 1} & x_{m 2} & ・ ・ & x_{m n}\\end{pmatrix}"
+                }
             />
       とする。一つのデータの特徴量は一行に並んでいるとします。目的変数のベクトル
             <InlineMath math="y" />は
@@ -40,7 +44,9 @@ export default function Supple({
             <InlineMath math="\boldsymbol{y}" />
       は、
             <BlockMath
-                math={"\\left( \\begin{array}{c} y_1 \\\\ y_2 \\\\ ・\\\\ ・\\\\ ・ \\\\ y_m \\end{array} \\right)"}
+                math={
+                    "\\left( \\begin{array}{c} y_1 \\\\ y_2 \\\\ ・\\\\ ・\\\\ ・ \\\\ y_m \\end{array} \\right)"
+                }
             />
       です。 MSEは以下の式で計算されます。 ここで、
             <InlineMath math="x_i" />は<InlineMath math="\boldsymbol{X}" />
@@ -59,10 +65,9 @@ export default function Supple({
             <BlockMath math="X^T(X\theta - y) = 0" />
       これを直感的には分かりずらいかもしれませんが、
             <InlineMath math="\sum" />
-      を分解して、分解した式を行列で表現すると、上の式になります。 
+      を分解して、分解した式を行列で表現すると、上の式になります。
             <InlineMath math="y_i - \theta^T x_i" />
-      がスカラー値であることもポイントです。
-      これを
+      がスカラー値であることもポイントです。 これを
             <InlineMath math="\boldsymbol{θ}" />
       について解くと、
             <BlockMath math="\boldsymbol{θ} = (\boldsymbol{X}^\mathsf{T} \boldsymbol{X})^{-1} \boldsymbol{X}^\mathsf{T} \boldsymbol{y}" />

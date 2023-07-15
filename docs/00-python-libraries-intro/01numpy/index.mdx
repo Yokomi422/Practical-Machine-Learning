@@ -1,5 +1,5 @@
 import Supplement from "../../../src/components/Supplement/Supplement";
-import Colab from "../../../src/components/Colab/Colab"
+import Colab from "../../../src/components/Colab/Colab";
 
 # Numpy
 
@@ -7,12 +7,12 @@ import Colab from "../../../src/components/Colab/Colab"
 
 以下に扱う内容は、[Numpy公式チュートリアル](https://docs.scipy.org/doc/numpy/user/quickstart.html)を参考にしています。適宜参照してください。
 
-
 これから実装するコードは、以下のGoogle Colaboratoryで確認出来ます。このページに記載紹介されているが、コードの例がないものは、Colaboratoryのリンクを参照してください。
 
 <Colab url="https://colab.research.google.com/github/Yokomi422/Practical-Machine-Learning/blob/main/docs/00-python-libraries-intro/01numpy/01colab.ipynb" />
 
 ## 0.Numpyのインポート
+
 Numpyは外部ライブラリで、Pythonに標準でインストールされていません。そのため、Numpyを使うためには、インポートする必要があります。インポートするには、以下のようにします。
 
 ```python
@@ -48,16 +48,15 @@ print(type(np_array))  #<class 'numpy.ndarray'>
 
 以下では、ndarrayのメソッドをいくつか紹介します。
 
-| メソッド | 説明 | メソッド | 説明 |
-|:-----------|:------------|:-----------|:------------|
-| `ndarray.shape` | 配列の形状を返す。 | `ndarray.max()` | 配列の最大値を返す。 |
-| `ndarray.reshape` | 配列の形状を変更する。 | `ndarray.min()` | 配列の最小値を返す。 |
-| `ndarray.ndim` | 配列の次元数を返す。 | `ndarray.mean()` | 配列の平均値を返す。 |
-| `ndarray.size` | 配列の要素数を返す。 | `ndarray.sum()` | 配列の合計値を返す。 |
-| `ndarray.dtype` | 配列の要素の型を返す。 | `ndarray.argmax()` | 配列の最大値のインデックスを返す。 |
-| `ndarray.astype` | 配列の要素の型を変換する。 | `ndarray.argmin()` | 配列の最小値のインデックスを返す。 |
-| `ndarray.flatten` | 配列を一次元にする。 | `ndarray.std()` | 配列の標準偏差を返す。 |
-
+| メソッド          | 説明                       | メソッド           | 説明                               |
+| :---------------- | :------------------------- | :----------------- | :--------------------------------- |
+| `ndarray.shape`   | 配列の形状を返す。         | `ndarray.max()`    | 配列の最大値を返す。               |
+| `ndarray.reshape` | 配列の形状を変更する。     | `ndarray.min()`    | 配列の最小値を返す。               |
+| `ndarray.ndim`    | 配列の次元数を返す。       | `ndarray.mean()`   | 配列の平均値を返す。               |
+| `ndarray.size`    | 配列の要素数を返す。       | `ndarray.sum()`    | 配列の合計値を返す。               |
+| `ndarray.dtype`   | 配列の要素の型を返す。     | `ndarray.argmax()` | 配列の最大値のインデックスを返す。 |
+| `ndarray.astype`  | 配列の要素の型を変換する。 | `ndarray.argmin()` | 配列の最小値のインデックスを返す。 |
+| `ndarray.flatten` | 配列を一次元にする。       | `ndarray.std()`    | 配列の標準偏差を返す。             |
 
 このページでは、重要なreshapeメソッドについて説明します。
 
@@ -77,10 +76,11 @@ print(np_array.shape) # (2, 3)
 
 ```python
 np_array = np.array([1, 2, 3, 4, 5, 6])
-np_array = np_array.reshape(2, -1) 
+np_array = np_array.reshape(2, -1)
 print(np_array.shape) # (2, 3)
 ```
-- -1は、要素数を自動で計算することを意味します。2 * x = 6 となるようなxを計算して、自動で要素数を決定します。
+
+- -1は、要素数を自動で計算することを意味します。2 \* x = 6 となるようなxを計算して、自動で要素数を決定します。
 
 これを応用すると、以下のようにも書くことができます。
 
@@ -89,18 +89,19 @@ np_array = np.array([1, 2, 3, 4, 5, 6])
 np_array = np_array.reshape(-1, 1)
 print(np_array.shape) # (6, 1)
 ```
-これは、一次元配列を二次元配列に変更しています。これは、sklearnを使う際に、データの形状を変更する際によく使われます。
 
+これは、一次元配列を二次元配列に変更しています。これは、sklearnを使う際に、データの形状を変更する際によく使われます。
 
 ## 2.インデックス参照とスライス
 
 Numpyの配列は、Pythonのリストと同様にインデックス参照とスライスができます。まずは一次元配列の場合を見てみましょう。
 
 ```python
-np_array = np.array([1, 2, 3,4]) 
+np_array = np.array([1, 2, 3,4])
 print(np_array[0])               # 1
-print(np_array[1:3])             # [2,3]    
+print(np_array[1:3])             # [2,3]
 ```
+
 - インデックスは、0から始まります。
 - スライスにおいて、最後のインデックスは含まれないことに注意してください。
 
@@ -113,12 +114,12 @@ print(np_array[0, 1:3])      # [2, 3]
 print(np_array[0:2, 0:2])    # [[1, 2], [4, 5]]
 print(np_array[:, 0])        # [1, 4]
 ```
+
 - 二次元配列の場合、[n,m]のnは行を、mは列を表します。
 
 - `np_array[0, 0]`は、ファンシーインデックスといい、`np_array[0][0]`と同じです。
 
 - [:, 0]など:は、スライスの省略形で、全ての要素を表します。
-
 
 ## 3.計算例
 
@@ -126,12 +127,13 @@ numpy.ndarrayの計算の例を以下に示します。
 
 まずは、numpy.ndarrayの要素ごとの計算です。
 
-
 以下の計算は、broadcastingという機能によって、スカラー値を配列の要素数だけ拡張して計算しています。
-```python 
+
+```python
 np_array = np.array([1, 2, 3])
 print(np_array + 1)     # [2, 3, 4]
 ```
+
 - 1は、[1,1,1]と解釈されます。
 
 次は、numpy.ndarrayの要素ごとの計算です。
@@ -142,6 +144,7 @@ np_array2 = np.array([4, 5, 6])
 print(np_array1 + np_array2)    # [5, 7, 9]
 print(np_array1 * np_array2)    # [4, 10, 18]
 ```
+
 - 要素ごとの計算は、`+`や`*`などの演算子を使って計算できます。
 - pythonのリストごとの足し算は、リストの結合となりますが、numpy.ndarrayの足し算は、要素ごとの足し算となります。
 
@@ -150,9 +153,11 @@ print(np_array1 * np_array2)    # [4, 10, 18]
 よく用いるNumpyの組み込み関数を以下に示します。
 
 ### 4.1. `np.arange`
+
 `np.arange`関数は、`range`関数と同様に、等差数列を作成する関数です。
 
 np.arange(start, end, step)
+
 - startは、等差数列の開始値(初期値は0)
 - endは、等差数列の終了値(ただし、この値は含まれない)
 - stepは、等差数列の間隔(初期値は1)
@@ -182,17 +187,17 @@ print(np_array)                   # [ 0.   2.5  5.   7.5 10. ]
 
 `np.random`モジュールは、乱数を生成するためのモジュールです。以下では、`np.random`モジュールの主な関数を紹介します。
 
-| 関数 | 説明 |
-|:-----------|:------------|
-| `np.random.rand()` | 0から1までの一様乱数を返す。 |
-| `np.random.randn()` | 標準正規分布に従う乱数を返す。 |
-| `np.random.randint()` | int型の一様乱数を返す。 |
-| `np.random.choice()` | 配列からランダムに抽出する。 |
-| `np.random.shuffle()` | 配列をランダムに並び替える。 |
-| `np.random.normal()` | 正規分布に従う乱数を返す。 |
-| `np.random.uniform()` | 一様分布に従う乱数を返す。 |
+| 関数                  | 説明                           |
+| :-------------------- | :----------------------------- |
+| `np.random.rand()`    | 0から1までの一様乱数を返す。   |
+| `np.random.randn()`   | 標準正規分布に従う乱数を返す。 |
+| `np.random.randint()` | int型の一様乱数を返す。        |
+| `np.random.choice()`  | 配列からランダムに抽出する。   |
+| `np.random.shuffle()` | 配列をランダムに並び替える。   |
+| `np.random.normal()`  | 正規分布に従う乱数を返す。     |
+| `np.random.uniform()` | 一様分布に従う乱数を返す。     |
 
-```python
+````python
 
 ```python
 
@@ -201,23 +206,23 @@ print(np_array)                   # [ 0.   2.5  5.   7.5 10. ]
 
 ```python
 np.random.seed(0)
-```
+````
+
 - 引数は任意の整数を指定できます。
 - random.seedを設定したセル内では、同じ乱数が出力されます。
 
 #### 4.4 その他の重要な関数
 
-| 関数 | 説明 | 関数 | 説明 |
-|:-----------|:------------|:-----------|:------------|
-| `np.sum()` | 合計値を計算する。 | `np.sqrt()` | 平方根を計算する。 |
-| `np.mean()` | 平均値を計算する。 | `np.exp()` | 指数関数を計算する。 |
-| `np.std()` | 標準偏差を計算する。 | `np.log()` | 自然対数を計算する。 |
-| `np.max()` | 最大値を計算する。 | `np.log10()` | 常用対数を計算する。 |
-| `np.min()` | 最小値を計算する。 | `np.log2()` | 底が2の対数を計算する。 |
-| `np.unique()` | 配列内の重複を取り除く。 | `np.abs()` | 絶対値を計算する。 |
-| `np.sort()` | 配列を昇順に並び替える。 | `np.sin()` | 正弦を計算する。 |
-| `np.power()` | べき乗を計算する。 | `np.cos()` | 余弦を計算する。 |
-
+| 関数          | 説明                     | 関数         | 説明                    |
+| :------------ | :----------------------- | :----------- | :---------------------- |
+| `np.sum()`    | 合計値を計算する。       | `np.sqrt()`  | 平方根を計算する。      |
+| `np.mean()`   | 平均値を計算する。       | `np.exp()`   | 指数関数を計算する。    |
+| `np.std()`    | 標準偏差を計算する。     | `np.log()`   | 自然対数を計算する。    |
+| `np.max()`    | 最大値を計算する。       | `np.log10()` | 常用対数を計算する。    |
+| `np.min()`    | 最小値を計算する。       | `np.log2()`  | 底が2の対数を計算する。 |
+| `np.unique()` | 配列内の重複を取り除く。 | `np.abs()`   | 絶対値を計算する。      |
+| `np.sort()`   | 配列を昇順に並び替える。 | `np.sin()`   | 正弦を計算する。        |
+| `np.power()`  | べき乗を計算する。       | `np.cos()`   | 余弦を計算する。        |
 
 以上で簡単にですが、Numpyの紹介を終わります。
 これらは、重要で使用頻度も高いですが、覚えようとするものではありません。
@@ -225,6 +230,5 @@ np.random.seed(0)
 必要になったときに、都度調べて使えるようになれば十分です。
 
 以下は練習問題です。上記の知識を使って解いてみましょう。
-
 
 ## 練習問題

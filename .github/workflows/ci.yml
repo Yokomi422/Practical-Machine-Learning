@@ -2,9 +2,9 @@ name: ci
 
 on:
   push:
-    branches:  [main, master]
+    branches: [main, master]
   pull_request:
-    
+
 jobs:
   build:
     name: Build
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:

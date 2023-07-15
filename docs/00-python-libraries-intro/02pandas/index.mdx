@@ -1,4 +1,4 @@
-import Colab from "../../../src/components/Colab/Colab"
+import Colab from "../../../src/components/Colab/Colab";
 
 # Pandas
 
@@ -10,7 +10,6 @@ Numpyは数値計算を高速に行うライブラリでしたが、Pandasは、
 
 <Colab url="https://colab.research.google.com/github/Yokomi422/Practical-Machine-Learning/blob/main/docs/00-python-libraries-intro/02pandas/01colab.ipynb" />
 
-
 まず初めは、重要なデータ構造であるSeriesとDataFrameを、Pythonの辞書やndarrayとの関係から学びます。
 
 ```python
@@ -18,9 +17,7 @@ import pandas as pd
 import numpy as np
 ```
 
-
 ## 1. Series
-
 
 ### 1.1 明示的なindex
 
@@ -48,14 +45,17 @@ sr
 9    9
 dtype: int64
 ```
+
 というように、indexが左に表示されます。
+
 - `pd.Series`は、Pythonの配列やList、ndarrayなどを引数に取り、Seriesを作成します。
-このindexは、明示的に指定することもできます。
+  このindexは、明示的に指定することもできます。
 
 ```python
 sr = pd.Series(data, index=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'])
 sr
 ```
+
 - indexを指定することで、文字列をindexとして持つこともできます。
 - numpyはint型のindexが暗黙的に与えられていました。
 
@@ -91,14 +91,13 @@ df = pd.DataFrame(data, index=['a', 'b', 'c'], columns=['A', 'B', 'C', 'D'])
 df
 ```
 
-|   | A | B | C | D |
-|---|---|---|---|---|
-| a | 0 | 1 | 2 | 3 |
-| b | 4 | 5 | 6 | 7 |
-| c | 8 | 9 | 10| 11|
+|     | A   | B   | C   | D   |
+| --- | --- | --- | --- | --- |
+| a   | 0   | 1   | 2   | 3   |
+| b   | 4   | 5   | 6   | 7   |
+| c   | 8   | 9   | 10  | 11  |
 
 このように、indexとcolumnを指定することで、より直感的にデータを扱うことができます。
-
 
 ### 2.2 特殊辞書としてのDataFrame
 
@@ -130,14 +129,13 @@ df
 - valueは、Seriesだけでなく、ndarrayやListなども指定することができます。
 - Series以外の場合は、Google Colaboratoryで参照できます。
 
-
-|      | 人口     | 面積     |
-|------|----------|----------|
-| 東京都  | 13515271 | 12194.05 |
+|          | 人口     | 面積     |
+| -------- | -------- | -------- |
+| 東京都   | 13515271 | 12194.05 |
 | 神奈川県 | 9132508  | 2416.32  |
-| 大阪府  | 8839102  | 1905.34  |
-| 愛知県  | 7552873  | 5173.23  |
-| 埼玉県  | 7339768  | 3797.75  |
+| 大阪府   | 8839102  | 1905.34  |
+| 愛知県   | 7552873  | 5173.23  |
+| 埼玉県   | 7339768  | 3797.75  |
 
 このように、DataFrameはSeriesを組み合わせて作成することができ、データを表形式で
 扱うことができます。DataFrameがデータ分析をする上での基本的なデータ構造です。
@@ -149,7 +147,6 @@ DataFrameは非常に多くの操作が可能です。ここでは、その中�
 
 <Colab url="https://colab.research.google.com/github/Yokomi422/Practical-Machine-Learning/blob/main/docs/00-python-libraries-intro/02pandas/01colab.ipynb" />
 
-
 ここでは、scikit-learnのサンプルデータセットの[Wine recognition dataset](https://scikit-learn.org/stable/datasets/toy_dataset.html)を使用します。
 
 ```python
@@ -159,29 +156,28 @@ df = pd.DataFrame(diabetes.data, columns=diabetes.feature_names)
 df
 ```
 
-|    |   alcohol |   malic_acid |   ash |   alcalinity_of_ash |   magnesium |   total_phenols |   flavanoids |   nonflavanoid_phenols |   proanthocyanins |   color_intensity |   hue |   od280/od315_of_diluted_wines |   proline |
-|---:|----------:|-------------:|------:|--------------------:|------------:|----------------:|-------------:|-----------------------:|-----------------:|------------------:|------:|-------------------------------:|----------:|
-|  0 |      14.23 |         1.71 |  2.43 |                15.6 |         127 |            2.8  |        3.06 |                  0.28 |             2.29 |              5.64 |  1.04 |                           3.92 |      1065 |
-|  1 |      13.2  |         1.78 |  2.14 |                11.2 |         100 |            2.65 |        2.76 |                  0.26 |             1.28 |              4.38 |  1.05 |                           3.4  |      1050 |
-|  2 |      13.16 |         2.36 |  2.67 |                18.6 |         101 |            2.8  |        3.24 |                  0.3  |             2.81 |              5.68 |  1.03 |                           3.17 |      1185 |
-|  3 |      14.37 |         1.95 |  2.5  |                16.8 |         113 |            3.85 |        3.49 |                  0.24 |             2.18 |              7.8  |  0.86 |                           3.45 |      1480 |
-|  4 |      13.24 |         2.59 |  2.87 |                21   |         118 |            2.8  |        2.69 |                  0.39 |             1.82 |              4.32 |  1.04 |                           2.93 |       735 |
-
+|     | alcohol | malic_acid |  ash | alcalinity_of_ash | magnesium | total_phenols | flavanoids | nonflavanoid_phenols | proanthocyanins | color_intensity |  hue | od280/od315_of_diluted_wines | proline |
+| --: | ------: | ---------: | ---: | ----------------: | --------: | ------------: | ---------: | -------------------: | --------------: | --------------: | ---: | ---------------------------: | ------: |
+|   0 |   14.23 |       1.71 | 2.43 |              15.6 |       127 |           2.8 |       3.06 |                 0.28 |            2.29 |            5.64 | 1.04 |                         3.92 |    1065 |
+|   1 |    13.2 |       1.78 | 2.14 |              11.2 |       100 |          2.65 |       2.76 |                 0.26 |            1.28 |            4.38 | 1.05 |                          3.4 |    1050 |
+|   2 |   13.16 |       2.36 | 2.67 |              18.6 |       101 |           2.8 |       3.24 |                  0.3 |            2.81 |            5.68 | 1.03 |                         3.17 |    1185 |
+|   3 |   14.37 |       1.95 |  2.5 |              16.8 |       113 |          3.85 |       3.49 |                 0.24 |            2.18 |             7.8 | 0.86 |                         3.45 |    1480 |
+|   4 |   13.24 |       2.59 | 2.87 |                21 |       118 |           2.8 |       2.69 |                 0.39 |            1.82 |            4.32 | 1.04 |                         2.93 |     735 |
 
 ### 3.1 DataFrameの基礎
 
 #### 3.1.1 DataFrameの基本的なメソッド
 
-| メソッド/属性名 | 説明 | 使用例 |
-| --- | --- | --- |
-| `head(n)` | 最初の`n`行を表示します（デフォルトは`5`） | `df.head(10)` |
-| `tail(n)` | 最後の`n`行を表示します（デフォルトは`5`） | `df.tail(3)` |
-| `dtypes` | DataFrame内の各列のデータ型を返します | `df.dtypes` |
-| `shape` | DataFrameの次元を返します（行数、列数） | `df.shape` |
-| `columns` | DataFrameの列名を返します | `df.columns` |
-| `values` | DataFrameのndarrayを返します。このメソッドは行と列のラベルを除去し、データを2次元のndarrayとして返します | `df.values` |
-| `to_list()` | Seriesをlistに変換します。これはndarrayやDataFrameに直接適用することはできません。 | `df['column_name'].to_list()` |
-| `count()` | 各列の非欠損値の数を返します | `df.count()` |
+| メソッド/属性名 | 説明                                                                                                     | 使用例                        |
+| --------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| `head(n)`       | 最初の`n`行を表示します（デフォルトは`5`）                                                               | `df.head(10)`                 |
+| `tail(n)`       | 最後の`n`行を表示します（デフォルトは`5`）                                                               | `df.tail(3)`                  |
+| `dtypes`        | DataFrame内の各列のデータ型を返します                                                                    | `df.dtypes`                   |
+| `shape`         | DataFrameの次元を返します（行数、列数）                                                                  | `df.shape`                    |
+| `columns`       | DataFrameの列名を返します                                                                                | `df.columns`                  |
+| `values`        | DataFrameのndarrayを返します。このメソッドは行と列のラベルを除去し、データを2次元のndarrayとして返します | `df.values`                   |
+| `to_list()`     | Seriesをlistに変換します。これはndarrayやDataFrameに直接適用することはできません。                       | `df['column_name'].to_list()` |
+| `count()`       | 各列の非欠損値の数を返します                                                                             | `df.count()`                  |
 
 - DataFrameをdf["column name"]とすると、その列のデータをSeriesとして取得できます。
 
@@ -198,21 +194,21 @@ DataFrameの操作をする際に、axisを指定することで、行方向（a
 
 axis=0 (↓):
 
-|         | Column1 | Column2 | Column3 | 
-|---------|---------|---------|---------|
-| Index1  | Value1  | Value2  | Value3  |
-| Index2  | Value4  | Value5  | Value6  |
-| Index3  | Value7  | Value8  | Value9  |
+|        | Column1 | Column2 | Column3 |
+| ------ | ------- | ------- | ------- |
+| Index1 | Value1  | Value2  | Value3  |
+| Index2 | Value4  | Value5  | Value6  |
+| Index3 | Value7  | Value8  | Value9  |
 
 axis=0は行方向つまり、↓の方向です。axis=0を指定すると、行方向に操作を行います。
 
 axis=1 (→):
 
-|         | Column1   | Column2   | Column3 |
-|---------|-----------|-----------|---------|
-| Index1  | Value1   | Value2   | Value3  |
-| Index2  | Value4   | Value5   | Value6  |
-| Index3  | Value7   | Value8   | Value9  |
+|        | Column1 | Column2 | Column3 |
+| ------ | ------- | ------- | ------- |
+| Index1 | Value1  | Value2  | Value3  |
+| Index2 | Value4  | Value5  | Value6  |
+| Index3 | Value7  | Value8  | Value9  |
 
 axis=1は列方向つまり、→の方向です。axis=1を指定すると、列方向に操作を行います。
 
@@ -226,11 +222,11 @@ data = pd.DataFrame(data)
 data
 ```
 
-|   |  0 |  1 |   2 |   3 |
-|---|----|----|-----|-----|
-| 0 |  0 |  1 |   2 |   3 |
-| 1 |  4 |  5 |   6 |   7 |
-| 2 |  8 |  9 |  10 |  11 |
+|     | 0   | 1   | 2   | 3   |
+| --- | --- | --- | --- | --- |
+| 0   | 0   | 1   | 2   | 3   |
+| 1   | 4   | 5   | 6   | 7   |
+| 2   | 8   | 9   | 10  | 11  |
 
 axis=0でsumを実行すると、
 
@@ -250,16 +246,15 @@ data.sum(axis=1) # [ 6, 22, 38]
 という形で返ってきます。これは、各行の合計値を返しています。
 上から順番に、0行目の合計値、1行目の合計値、2行目の合計値を返しています。
 
-
-| メソッド/属性名 | 説明 | 使用例 |
-| --- | --- | --- |
-| `sum()` | 各列の合計値を返します | `df.sum()` |
-| `mean()` | 各列の平均値を返します | `df.mean()` |
-| `median()` | 各列の中央値を返します | `df.median()` |
-| `min()` | 各列の最小値を返します | `df.min()` |
-| `max()` | 各列の最大値を返します | `df.max()` |
-| `std()` | 各列の標準偏差を返します | `df.std()` |
-| `var()` | 各列の分散を返します | `df.var()` |
+| メソッド/属性名                 | 説明                                      | 使用例                             |
+| ------------------------------- | ----------------------------------------- | ---------------------------------- |
+| `sum()`                         | 各列の合計値を返します                    | `df.sum()`                         |
+| `mean()`                        | 各列の平均値を返します                    | `df.mean()`                        |
+| `median()`                      | 各列の中央値を返します                    | `df.median()`                      |
+| `min()`                         | 各列の最小値を返します                    | `df.min()`                         |
+| `max()`                         | 各列の最大値を返します                    | `df.max()`                         |
+| `std()`                         | 各列の標準偏差を返します                  | `df.std()`                         |
+| `var()`                         | 各列の分散を返します                      | `df.var()`                         |
 | `sort_values(by='column_name')` | `column_name`の列の値で昇順にソートします | `df.sort_values(by='column_name')` |
 
 あとで触れる連結や削除などに触れるとよりaxisの理解が深まると思います。
@@ -267,26 +262,28 @@ data.sum(axis=1) # [ 6, 22, 38]
 #### 3.1.3 columnとindexの設定
 
 上で見たようにDataFrameのcolumnとindexは
+
 ```python
 df.columns
 df.index
 ```
+
 で取得することができます。ここでは、これらを変更する方法を学びます。
 
-| メソッド/属性名 | 説明 | 使用例 |
-| --- | --- | --- |
-| `rename(columns=dict)` | 既存の列名を新しい列名に変更します。`dict`は旧列名を新列名にマッピングする辞書です | `df.rename(columns={'old_name': 'new_name'})` |
-| `set_index(keys)` | 一つまたは複数の列をDataFrameの新しいインデックスとして設定します。`keys`は列名または列名のリストです | `df.set_index('column_name')` |
-| `reset_index()` | 既存のインデックスを削除し、デフォルトの整数インデックスにリセットします | `df.reset_index()` |
+| メソッド/属性名        | 説明                                                                                                  | 使用例                                        |
+| ---------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| `rename(columns=dict)` | 既存の列名を新しい列名に変更します。`dict`は旧列名を新列名にマッピングする辞書です                    | `df.rename(columns={'old_name': 'new_name'})` |
+| `set_index(keys)`      | 一つまたは複数の列をDataFrameの新しいインデックスとして設定します。`keys`は列名または列名のリストです | `df.set_index('column_name')`                 |
+| `reset_index()`        | 既存のインデックスを削除し、デフォルトの整数インデックスにリセットします                              | `df.reset_index()`                            |
 
 ### 3.2 DataFrameの操作
+
 異なるDataFrameを連結したり、DataFrameの列を追加したり、削除したりする方法を学びます。
 さらに、DataFrameから特定の行や列を抽出する方法も学びます。
 
 #### 3.2.1 DataFrameの連結
 
 DataFrameを連結する方法を学びます。Pandasでは、`concat()`というメソッドを用いてDataFrameを連結することができます。
-
 
 Wine recognition datasetを二分します。
 
@@ -304,6 +301,7 @@ axis=0、行方向に連結します。
 ```python
 pd.concat([df1, df2])
 ```
+
 - デフォルトでaxis=0になっています。
 
 axis=1方向に連結したい時は、axis=1を指定します。
@@ -311,26 +309,31 @@ axis=1方向に連結したい時は、axis=1を指定します。
 ```python
 pd.concat([df3, df4], axis=1)
 ```
+
 #### 3.2.2 特定の行や列、要素を抽出する
 
 DataFrameから特定の行や列を抽出する方法を学びます。
 
 ##### カラムを指定して列抽出
+
 ```python
 df["malic_acid"]
 ```
+
 ##### 複数のカラムを指定して列抽出
+
 ```python
 df[['alcohol', 'malic_acid']]
 ```
+
 - 2つ以上のカラムを指定する場合は、リストで指定する必要があります。
 
 `loc`と`iloc`を使って、特定の行や列を抽出することでもきます。
 
-| メソッド/属性名 | 説明 | 使用例 |
-| --- | --- | --- |
-| `loc` | ラベルを指定して行や列を抽出します | `df.loc[0:2, ["alcohol", "malic_acid"]]` |
-| `iloc` | 位置を指定して行や列を抽出します | `df.iloc[0:2, 0:2]` |
+| メソッド/属性名 | 説明                               | 使用例                                   |
+| --------------- | ---------------------------------- | ---------------------------------------- |
+| `loc`           | ラベルを指定して行や列を抽出します | `df.loc[0:2, ["alcohol", "malic_acid"]]` |
+| `iloc`          | 位置を指定して行や列を抽出します   | `df.iloc[0:2, 0:2]`                      |
 
 - locもilocも[]で囲っていることに注意してください。
 - []の第一引数は、行を指定します。第二引数は列を指定します。
@@ -349,7 +352,7 @@ df[df["alcohol"] > 14]
 
 - fitlerメソッドやqueryメソッドを使っても条件抽出ができます。
 
-```python
+````python
 
 条件抽出は使用頻度が高いので、今後度々登場するので、新しい使い方が登場するたびに、その都度説明します。
 
@@ -363,7 +366,7 @@ Wine recognition datasetには欠損値がないので、新たなcolumnを追�
 cand = [np.nan, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 df['new_column'] = np.random.choice(cand, len(df))
 df.head()
-```
+````
 
 #### 3.3.1 isnull()
 
@@ -372,6 +375,7 @@ df.head()
 ```python
 df.isnull()
 ```
+
 - NaNであればTrueになります。
 
 #### 3.3.2 isnull().sum()
@@ -381,11 +385,12 @@ df.isnull()
 ```python
 df.isnull().sum()
 ```
+
 - これはよく使用します。
 - 欠損値をどう処理するかについては、Feature Engineeringの章で学びます。
 
 これで、DataFrameの基礎的な操作について学びました。
 
 以下は練習問題です。上記の知識を使って解いてみましょう。
-## 練習問題
 
+## 練習問題

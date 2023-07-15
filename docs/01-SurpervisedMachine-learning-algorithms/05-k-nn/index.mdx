@@ -1,5 +1,3 @@
-
-
 # k-最近傍法(k-NN)
 
 ## k-NNの概要
@@ -27,7 +25,6 @@ $k > 1$の場合は、最も近い$k$個のサンプルのアイリスの種類�
 k-NNの概要がわかったところで、scikit-learnを使って実装してみましょう。
 今回は、k = 5で実装します。
 上と同様に、irisの分類を使用します。
-
 
 ##### ライブラリのインポート
 
@@ -71,4 +68,5 @@ y_pred = knn.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print('accuracy: {:.2f}'.format(accuracy))
 ```
+
 - accuracy: 0.97となりました。

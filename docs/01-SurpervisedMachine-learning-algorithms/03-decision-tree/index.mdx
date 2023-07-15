@@ -1,7 +1,7 @@
-import Tree01 from "../../../src/components/01ML_algo/algo03/Tree01/Tree01"
-import Tree02 from "../../../src/components/01ML_algo/algo03/Tree02/Tree02"
-import Graph01 from "../../../src/components/01ML_algo/algo03/Graph01/Graph01"
-import Supplement from "../../../src/components/Supplement/Supplement"
+import Tree01 from "../../../src/components/01ML_algo/algo03/Tree01/Tree01";
+import Tree02 from "../../../src/components/01ML_algo/algo03/Tree02/Tree02";
+import Graph01 from "../../../src/components/01ML_algo/algo03/Graph01/Graph01";
+import Supplement from "../../../src/components/Supplement/Supplement";
 
 # 決定木(Decision Tree)
 
@@ -23,7 +23,7 @@ import Supplement from "../../../src/components/Supplement/Supplement"
 上の例では、分類問題の例を示しましたが、回帰問題にも決定木は使われます。
 例えば、会員の継続期間の予測という回帰問題を考えてみましょう。
 
-<Tree02/>
+<Tree02 />
 
 このように、決定木は、データを分割することで、回帰問題を解くことができます。
 :::
@@ -32,7 +32,8 @@ import Supplement from "../../../src/components/Supplement/Supplement"
 
 決定木の概要がわかったところで、実際に決定木を実装してみましょう。
 決定木の実装には、
--  ①どの特徴量を選択するか
+
+- ①どの特徴量を選択するか
 - ②どの深さまで木を成長させるか
 
 が重要です。
@@ -43,49 +44,59 @@ import Supplement from "../../../src/components/Supplement/Supplement"
 ひとまず、ジニ不純物とエントロピーについて説明します。
 
 ### ジニ不純物(Gini impurity)
+
 ジニ不純物は、あるグループの中で、異なるクラスのデータがどれだけ混ざっているかを表す指標です。
 ジニ不純物が小さいほど、あるグループの中で、同じクラスのデータが多く、
 ジニ不純物が大きいほど、あるグループの中で、異なるクラスのデータが多いことを表します。
 
 ジニ不純物は以下のように定義されます。
 
-$$$
+$$
 \text{Gini(p)} = 1 - \sum_{i=1}^{n} p_i^2
-$$$
-$$$
+$$
+
+$$
 p_i = \text{各クラスの割合}
-$$$
+$$
 
 :::tip 例1
 あるグループの中に、赤いボールが3個、青いボールが2個あるとします。
 このとき、ジニ不純物は以下のように計算できます。
-$$$
+
+$$
 \text{Gini(p)} = 1 - \left(\frac{3}{5}\right)^2 - \left(\frac{2}{5}\right)^2 = 0.48
-$$$
+$$
+
 :::
 
 :::tip 例2
 あるグループの中に、青いボールが10個あるとします。
 この時のジニ不純物は以下のように計算できます。
-$$$
+
+$$
 \text{Gini(p)} = 1 - \left(\frac{10}{10}\right)^2 = 0
-$$$
+$$
+
 :::
 
 このようにジニ不純物は、ある一つのグループがどれくらいの種類からなるかを表します。
 
 ### エントロピー(Entropy)
+
 ジニ不純物の他にデータの乱雑さを表す指標として、エントロピーがあります。
 エントロピーは、以下のように定義されます。
-$$$
+
+$$
 \text{Entropy(p)} = - \sum_{i=1}^{n} p_i \log_2 p_i
-$$$
-$$$
+$$
+
+$$
 p_i = \text{各クラスの割合}
-$$$
-$$$
+$$
+
+$$
 \text{n} = \text{全データ数}
-$$$
+$$
 
 エントロピーもジニ不純物と同様に、ある一つのグループがどれくらいの種類からなるかを表します。
 エントロピーが小さいほど、あるグループの中で、同じクラスのデータが多く、
@@ -93,17 +104,21 @@ $$$
 
 :::tip 例1
 あるグループの中に、赤いボールが3個、青いボールが2個あるとします。 このとき、エントロピーは以下のように計算できます。
-$$$
+
+$$
 \text{Entropy(p)} = - \left(\frac{3}{5} \log_2 \frac{3}{5} + \frac{2}{5} \log_2 \frac{2}{5}\right) = 0.971
-$$$
+$$
+
 :::
 
 :::tip 例2
 あるグループの中に、青いボールが10個あるとします。
 この時のエントロピーは以下のように計算できます。
-$$$
+
+$$
 \text{Entropy(p)} = - \left(\frac{10}{10} \log_2 \frac{10}{10}\right) = 0
-$$$
+$$
+
 :::
 
 ### 情報利得(Information gain)
@@ -111,13 +126,16 @@ $$$
 ジニ不純物とエントロピーの指標を用いて、各特徴量の分割の良さを評価する指標として、情報利得があります。
 情報利得は、以下のように定義されます。
 ジニ不純物を用いると、
-$$$
+
+$$
 \text{Information gain} = \text{親ノードのジニ不純物} - \text{子ノードのジニ不純物の重み付き平均}
-$$$
+$$
+
 エントロピーを用いると、
-$$$
+
+$$
 \text{Information gain} = \text{親ノードのエントロピー} - \text{子ノードのエントロピーの重み付き平均}
-$$$
+$$
 
 となります。  
 さて、この指標が最適な分割を選択するための指標となるのは、なぜでしょうか？
@@ -134,12 +152,12 @@ $$$
 決定木の深さを調整するには、今までのように数式を用いた方法ではなく、
 交差検証(のちに扱います)や、木の深さを調整するパラメータを用いる方法があります。早期停止や正則化もある。
 
-
 ## 決定木の実装
 
 scikit-learnを用いて、決定木を実装してみましょう。
 実際にirisデータセットを用いて、決定木を実装してみます。
 以下のコードは理解する必要はありません。後ほど説明します。
+
 ```python
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
@@ -161,8 +179,8 @@ clf.fit(X_train, y_train)
 print('Accuracy:', clf.score(X_test, y_test))
 ```
 
-
 決定木のパラメータについて説明します。詳細は[公式サイト](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn-tree-decisiontreeclassifier)で確認してください。
+
 - criterion: 分割の品質を測定する関数を指定します。デフォルトはジニ不純物です。
 - max_depth: 決定木の深さを指定します。デフォルトはNoneです。
 - min_samples_split: ノードを分割するために必要な最小サンプル数を指定します。デフォルトは2です。

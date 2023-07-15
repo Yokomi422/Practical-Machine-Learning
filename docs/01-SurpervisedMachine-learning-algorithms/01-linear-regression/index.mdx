@@ -1,22 +1,23 @@
-import MyChart from '../../../src/components/Graphs/scatter';
-import LinearRegression from "../../../src/components/Graphs/linear"
-import Answer from "../../../src/components/Answer/Answer"
-import Equ from "../../../src/components/Equations/index"
-import Supple from "./supple"
-import GeneralForm from "../../../src/components/01ML_algo_01/general_form"
-import Colab from "../../../src/components/Colab/Colab"
+import MyChart from "../../../src/components/Graphs/scatter";
+import LinearRegression from "../../../src/components/Graphs/linear";
+import Answer from "../../../src/components/Answer/Answer";
+import Equ from "../../../src/components/Equations/index";
+import Supple from "./supple";
+import GeneralForm from "../../../src/components/01ML_algo_01/general_form";
+import Colab from "../../../src/components/Colab/Colab";
 
 # 線形回帰(Liner Regression)
 
 まず最初に線形回帰を扱うことで、線形回帰を学びながら、機械学習の基礎を学んでいきます。
 
-
 ## 機械学習の基礎
 
 機械学習では、目的変数と特徴量の関係を最もよく表す関数を求めることが目的です。
+
 $$
 Y = f(X) + \epsilon
 $$
+
 - $Y$ : 目的変数
 - $X$ : 特徴量
 - $f$ : 目的変数と特徴量の関係を表す関数
@@ -31,23 +32,22 @@ $$
 
 $\hat{Y}$の上についている記号は、ハットと呼ばれ、推定値であることを表しています。$\hat{f}$は真の関数$f$の推測値です。
 
-
 繰り返しにはなりますが、、真の関数$f$はわかりません。そこで、$\hat{f}$がどのような関数であるかを考える必要があります。
 大抵の場合は、線形や多項式など、
+
 - $f$はどのような形であるか
-を仮定して$\hat{f}$を求めます。
+  を仮定して$\hat{f}$を求めます。
 
 次に、形を仮定した$\hat{f}$の中で、どのような関数が真の関数$f$に近いかを考えます。
 パラメータが決定すれば、関数が決定するので、パラメータを決定することが重要になります。
 
-
 以上のように、機械学習では、真の関数$f$に最も近い関数を求めるために、以下のことを考えます。
+
 - $\hat{Y}$はどのような形であるか
-- $\hat{Y}$の中で、どのようなパラメータが真の関数$f$に近いか    
+- $\hat{Y}$の中で、どのようなパラメータが真の関数$f$に近いか
 - 最適なパラメータをどのように求めるか
 
 これら三つに視点に基づいて、これから機械学習アルゴリズムを紹介していくので、参考にしてください。
-
 
 ## 線形回帰とは
 
@@ -63,7 +63,7 @@ $$
 例えば、身長と体重を測定したデータがあったとします。
 このデータを直線で表現すると、以下のようになります
 
-<MyChart/>
+<MyChart />
 
 このグラフを見てみると、身長が高くなるにつれて体重も増えていることがわかります。
 つまり、身長がいくつかが分かれば、体重もある程度予測できるということです。
@@ -81,11 +81,13 @@ $$
 
 まずは、簡単な例から見てみましょう。
 単回帰では、$y$が体重で$x$が身長となっており、
+
 $$
 \hat{y} = a + b x
 $$
 
 という関係式になっていましたが、例えば$x$を身長、$z$を年齢として
+
 $$
 \hat{y} = a + b x + c z
 $$
@@ -103,9 +105,11 @@ $$
 
 予測値$\hat{y}$と正解データ$y$の誤差を最小にするように、$a,b,c$を求めます。一般に機械学習では、損失関数を最適化するパラメータ(ここでは、a,b,cのこと)を見つけることを目的としています。線形回帰では、平均二乗誤差を損失関数として用います。
 損失関数は以下のようになります。
+
 $$
 S(a,b,c) =  \sum_{i=0}^{n-1} (y_i - (a + b x_i + c z_i))^2
 $$
+
 これを最小にする$a,b,c$を求めることで、①を満たす$a,b,c$を求めることができます。
 では、a,b,cを求める方法を考えていきましょう。
 
@@ -114,41 +118,48 @@ $S(a,b,c)$をa,b,cについてそれぞれ偏微分してみます。
 $$
 \frac{\partial S}{\partial a} = -2 \sum_{i=0}^{n-1} (y_i - (a + b x_i + c z_i))
 $$
+
 $$
 \frac{\partial S}{\partial b} = -2 \sum_{i=0}^{n-1} x_i (y_i - (a + b x_i + c z_i))
 $$
+
 $$
 \frac{\partial S}{\partial c} = -2 \sum_{i=0}^{n-1} z_i (y_i - (a + b x_i + c z_i))
 $$
 
 これらを0とおいて、$a,b,c$について解くと、
+
 $$
 a = \frac{\sum_{i=0}^{n-1} (y_i - b x_i - c z_i)}{n}
 $$
+
 $$
 b = \frac{\sum_{i=0}^{n-1} x_i (y_i - a - c z_i)}{\sum_{i=0}^{n-1} x_i^2}
 $$
+
 $$
 c = \frac{\sum_{i=0}^{n-1} z_i (y_i - a - b x_i)}{\sum_{i=0}^{n-1} z_i^2}
 $$
+
 となり、これらを使って、$a,b,c$を求めることができます。
 
-<GeneralForm props="正規方程式の一般形"/>
+<GeneralForm props="正規方程式の一般形" />
 
 :::tip 他の損失関数
 線形回帰の損失関数としては、平均二乗誤差が最も一般的ですが、他にも様々な損失関数があります。
 例えば、平均絶対誤差や、ハブラー損失関数などがあります。
+
 - 平均絶対誤差(Mean Absolute Error, MAE)
 
-
 予測値と正解データの差の絶対値の平均をとったものです。
+
 $$
 S =  \sum_{i=0}^{n-1} |y_i - \hat{y}|
 $$
+
 平均絶対誤差は、外れ値の影響を受けにくいという特徴があるので、外れ値が多いデータに対しては、平均二乗誤差よりも平均絶対誤差の方が良い結果を出すことが多いです。
 
 - ハブラー損失関数(Huber Loss)
-
 
 これは誤差が小さいときは二乗誤差、大きいときは絶対誤差を用いる損失関数です。
 
@@ -158,6 +169,7 @@ L_{\delta}(a) = \begin{cases}
 \delta (|a| - \frac{1}{2}\delta) & \text{otherwise}.
 \end{cases}
 $$
+
 ここで、$a = y_i - \hat{y}_i$は誤差、$\delta$は閾値です。
 これらの他にも、さまざまな損失がありますが、それぞれのドメインに合わせて、適切な損失関数を選択する必要があります。
 :::
@@ -185,6 +197,5 @@ Pythonのコードの実行結果は、以下のGoogle Colaboratoryで確認す�
 - データの前処理
 - モデルの選択
 - ハイパーパラメータの調整
-
 
 などが挙げられます。しかし、この章はアルゴリズムの解説を目的としているので、詳しくは割愛します。後の章で、これらについて取り上げます。
